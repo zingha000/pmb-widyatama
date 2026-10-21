@@ -1,0 +1,2662 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>PMB Universitas Widyatama</title>
+
+    <meta
+      name="description"
+      content="Informasi penerimaan mahasiswa baru Universitas Widyatama, mulai dari program studi, cara pendaftaran, biaya kuliah, hingga beasiswa."
+    />
+
+    <meta name="robots" content="noindex, nofollow" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="id_ID" />
+    <meta property="og:title" content="PMB Universitas Widyatama" />
+    <meta
+      property="og:description"
+      content="Kenali program studi dan panduan penerimaan mahasiswa baru Universitas Widyatama."
+    />
+
+    <meta name="theme-color" content="#0b3471" />
+
+    <style>
+      /* [KOMPONEN 01] Design tokens */
+      .pmb {
+        --navy: #0b3471;
+        --blue: #1556bd;
+        --orange: #ff7417;
+
+        /* Oranye untuk teks (butuh >= 3:1 di atas putih) */
+        --orange-text: #d95e0a;
+        /* Oranye solid untuk tombol (putih >= 4.5:1) */
+        --orange-deep: #c2410c;
+        --orange-deep-hover: #a93809;
+
+        --blue-gradient: linear-gradient(140deg, #0b3471 0%, #123f96 52%, #1556bd 100%);
+        --orange-gradient: linear-gradient(135deg, #ff7417 0%, #ffa14a 100%);
+
+        --ink: #172b4d;
+        --muted: #5d6b82;
+        --line: #e2e8f1;
+        --line-accent: #c9d8ee;
+        --surface: #ffffff;
+        --surface-soft: #f5f8fd;
+        --surface-blue: #edf4ff;
+
+        --radius-sm: 8px;
+        --radius-md: 16px;
+        --radius-lg: 24px;
+        --radius-pill: 999px;
+
+        --space-1: 8px;
+        --space-2: 16px;
+        --space-3: 24px;
+        --space-4: 32px;
+        --space-5: 40px;
+        --space-6: 48px;
+        --space-7: 64px;
+        --space-8: 80px;
+
+        --container: 1180px;
+        --shadow-card: 0 12px 32px rgb(11 52 113 / 8%);
+        --shadow-card-hover: 0 20px 40px rgb(11 52 113 / 14%);
+        --lift: -4px;
+
+        font-family:
+          system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+          Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.65;
+        color: var(--ink);
+        background: var(--surface);
+      }
+
+      /* [KOMPONEN 02] Reset dan elemen dasar */
+      .pmb,
+      .pmb *,
+      .pmb *::before,
+      .pmb *::after {
+        box-sizing: border-box;
+      }
+
+      body:has(> .pmb) {
+        margin: 0;
+      }
+
+      .pmb img,
+      .pmb svg {
+        display: block;
+        max-width: 100%;
+      }
+
+      .pmb img {
+        height: auto;
+      }
+
+      .pmb a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .pmb button,
+      .pmb input,
+      .pmb textarea,
+      .pmb select {
+        font: inherit;
+      }
+
+      .pmb h1,
+      .pmb h2,
+      .pmb h3,
+      .pmb p {
+        margin-top: 0;
+      }
+
+      .pmb h1,
+      .pmb h2,
+      .pmb h3 {
+        line-height: 1.2;
+        letter-spacing: -0.025em;
+      }
+
+      .pmb h1 {
+        font-size: clamp(2.5rem, 4.4vw, 3.9rem);
+        font-weight: 800;
+      }
+
+      .pmb h2 {
+        font-size: clamp(1.8rem, 3vw, 2.55rem);
+        font-weight: 700;
+      }
+
+      .pmb h3 {
+        font-size: 1.15rem;
+        font-weight: 700;
+      }
+
+      .pmb p {
+        color: var(--muted);
+      }
+
+      /* Teks pendukung: ukuran lebih besar, warna netral */
+      .pmb .pmb-lead {
+        max-width: 640px;
+        margin-bottom: 0;
+        color: var(--muted);
+        font-size: 1.06rem;
+        line-height: 1.75;
+      }
+
+      .pmb .pmb-caption {
+        color: var(--muted);
+        font-size: 0.95rem;
+        font-weight: 500;
+      }
+
+      /* [KOMPONEN 03] Layout */
+      .pmb .pmb-container {
+        width: min(var(--container), calc(100% - 48px));
+        margin-inline: auto;
+      }
+
+      .pmb .pmb-section {
+        padding-block: var(--space-8);
+      }
+
+      .pmb .pmb-section--soft {
+        background: var(--surface-soft);
+      }
+
+      .pmb .pmb-section-heading {
+        max-width: 760px;
+        margin-bottom: var(--space-5);
+      }
+
+      .pmb .pmb-section-heading p {
+        max-width: 640px;
+        margin-bottom: 0;
+      }
+
+      /* Section biaya kuliah: judul dibuat lebih besar, gaya tetap sama dengan section lain */
+      .pmb #pmb-biaya .pmb-section-heading {
+        max-width: 860px;
+      }
+
+      .pmb #pmb-biaya .pmb-section-heading h2 {
+        font-size: clamp(2.15rem, 3.6vw, 3.05rem);
+      }
+
+      .pmb #pmb-biaya .pmb-section-heading p {
+        max-width: 720px;
+      }
+
+      /* Judul kartu pada section biaya dibuat seragam satu sama lain */
+      .pmb #pmb-biaya .pmb-card h3 {
+        font-size: 1.28rem;
+        line-height: 1.35;
+      }
+
+      /* Aksen batang pada judul section supaya tiap level judul terlihat berbeda */
+      .pmb .pmb-section-heading h2 {
+        position: relative;
+        padding-left: 20px;
+      }
+
+      .pmb .pmb-section-heading h2::before {
+        position: absolute;
+        top: 0.14em;
+        bottom: 0.14em;
+        left: 0;
+        width: 6px;
+        border-radius: var(--radius-pill);
+        background: var(--orange-gradient);
+        content: "";
+      }
+
+      .pmb .pmb-eyebrow {
+        display: inline-block;
+        margin-bottom: var(--space-2);
+        color: var(--blue);
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      /* [KOMPONEN 04] Tombol */
+      .pmb .pmb-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        min-height: 48px;
+        padding: 12px 22px;
+        border: 2px solid transparent;
+        border-radius: var(--radius-pill);
+        font-size: 0.95rem;
+        font-weight: 700;
+        line-height: 1.2;
+        cursor: pointer;
+        transition:
+          background-color 180ms ease,
+          color 180ms ease,
+          transform 180ms ease;
+      }
+
+      .pmb .pmb-button--primary {
+        color: #ffffff;
+        background: var(--orange-deep);
+      }
+
+      .pmb .pmb-button--primary:hover {
+        background: var(--orange-deep-hover);
+        transform: translateY(-2px);
+      }
+
+      .pmb .pmb-button--secondary {
+        color: var(--navy);
+        background: #ffffff;
+        border-color: var(--line);
+        font-weight: 600;
+      }
+
+      .pmb .pmb-button--secondary:hover {
+        border-color: var(--blue);
+        background: var(--surface-blue);
+      }
+
+      /* Aksi penutup section */
+      .pmb .pmb-section-action {
+        margin-top: var(--space-4);
+      }
+
+      .pmb .pmb-note {
+        margin-top: var(--space-3);
+        margin-bottom: 0;
+      }
+
+      /* [KOMPONEN 05] Grid dan kartu */
+      .pmb .pmb-grid {
+        display: grid;
+        gap: var(--space-3);
+      }
+
+      .pmb .pmb-grid--2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .pmb .pmb-grid--3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .pmb .pmb-grid--4 {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .pmb .pmb-card {
+        min-width: 0;
+        padding: var(--space-3);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-md);
+        background: var(--surface);
+        box-shadow: var(--shadow-card);
+        transition:
+          transform 200ms ease,
+          box-shadow 200ms ease,
+          border-color 200ms ease;
+      }
+
+      .pmb .pmb-card:hover {
+        transform: translateY(var(--lift));
+        border-color: var(--line-accent);
+        box-shadow: var(--shadow-card-hover);
+      }
+
+      /* Kartu sorotan (informasi beasiswa) */
+      .pmb .pmb-card--highlight {
+        position: relative;
+        overflow: hidden;
+        border: 2px solid var(--line-accent);
+        background: linear-gradient(160deg, #ffffff 0%, var(--surface-blue) 100%);
+        box-shadow: 0 18px 40px rgb(11 52 113 / 14%);
+      }
+
+      .pmb .pmb-card--highlight::before {
+        position: absolute;
+        top: -70px;
+        right: -70px;
+        width: 190px;
+        height: 190px;
+        border-radius: 50%;
+        background: var(--orange-gradient);
+        opacity: 0.16;
+        content: "";
+      }
+
+      .pmb .pmb-card--highlight > * {
+        position: relative;
+        z-index: 1;
+      }
+
+      .pmb .pmb-card--highlight .pmb-icon-box {
+        color: #ffffff;
+        background: var(--orange-gradient);
+        box-shadow: 0 10px 22px rgb(11 52 113 / 18%);
+      }
+
+      .pmb .pmb-card--highlight h3 {
+        color: var(--navy);
+      }
+
+      .pmb .pmb-card--highlight-badge {
+        position: absolute;
+        top: 18px;
+        right: 18px;
+        z-index: 1;
+        padding: 6px 12px;
+        border-radius: var(--radius-pill);
+        color: #ffffff;
+        background: var(--orange-deep);
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
+      }
+
+      .pmb .pmb-card--highlight:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 28px 54px rgb(11 52 113 / 20%);
+      }
+
+      .pmb .pmb-card--highlight:hover .pmb-icon-box {
+        transform: scale(1.08) rotate(-4deg);
+      }
+
+      .pmb .pmb-card p:last-child {
+        margin-bottom: 0;
+      }
+
+      .pmb .pmb-icon-box {
+        display: grid;
+        width: 52px;
+        height: 52px;
+        place-items: center;
+        margin-bottom: var(--space-2);
+        border-radius: var(--radius-sm);
+        color: var(--blue);
+        background: var(--surface-blue);
+        transition: transform 200ms ease;
+      }
+
+      .pmb .pmb-card:hover .pmb-icon-box {
+        transform: translateY(-3px);
+      }
+
+      .pmb .pmb-icon-box svg {
+        width: 26px;
+        height: 26px;
+      }
+
+      /* [KOMPONEN 06] Aksesibilitas */
+      .pmb .pmb-skip-link {
+        position: absolute;
+        z-index: 9999;
+        top: -100px;
+        left: 16px;
+        padding: 12px 16px;
+        border-radius: var(--radius-sm);
+        color: #ffffff;
+        background: var(--navy);
+      }
+
+      .pmb .pmb-skip-link:focus {
+        top: 16px;
+      }
+
+      .pmb a:focus-visible,
+      .pmb button:focus-visible,
+      .pmb summary:focus-visible {
+        outline: 3px solid var(--blue);
+        outline-offset: 4px;
+      }
+
+      .pmb .pmb-muted {
+        color: var(--muted);
+      }
+
+      .pmb .pmb-sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip-path: inset(50%);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      /* [KOMPONEN 07] Responsif */
+      @media (max-width: 900px) {
+        .pmb .pmb-grid--4 {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .pmb .pmb-grid--3 {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .pmb .pmb-section {
+          padding-block: var(--space-7);
+        }
+      }
+
+      @media (max-width: 600px) {
+        .pmb .pmb-container {
+          width: calc(100% - 36px);
+        }
+
+        .pmb .pmb-section {
+          padding-block: var(--space-6);
+        }
+
+        .pmb .pmb-grid--2,
+        .pmb .pmb-grid--3,
+        .pmb .pmb-grid--4 {
+          grid-template-columns: 1fr;
+        }
+
+        .pmb .pmb-card {
+          padding: 20px;
+        }
+
+        .pmb .pmb-program-cta {
+          flex-direction: column;
+          align-items: stretch;
+          padding: 18px;
+        }
+
+        .pmb .pmb-button {
+          width: 100%;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .pmb *,
+        .pmb *::before,
+        .pmb *::after {
+          scroll-behavior: auto !important;
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+
+      /* [KOMPONEN 08] Header */
+      .pmb .pmb-header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        border-bottom: 1px solid var(--line);
+        background: #ffffff;
+        transition:
+          background-color 220ms ease,
+          border-color 220ms ease,
+          box-shadow 220ms ease;
+      }
+
+      /* Efek kaca (glass) saat halaman digulir ke bawah */
+      .pmb .pmb-header[data-scrolled="true"] {
+        border-bottom-color: transparent;
+        background: rgb(255 255 255 / 52%);
+        box-shadow: 0 10px 30px rgb(11 52 113 / 10%);
+        -webkit-backdrop-filter: blur(14px) saturate(160%);
+        backdrop-filter: blur(14px) saturate(160%);
+      }
+
+      /* Jarak agar target anchor tidak tertutup header sticky */
+      .pmb [id] {
+        scroll-margin-top: 100px;
+      }
+
+      .pmb .pmb-header-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        min-height: 84px;
+      }
+
+      .pmb .pmb-brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        flex-shrink: 0;
+        color: var(--navy);
+        font-weight: 800;
+        line-height: 1.25;
+      }
+
+      .pmb .pmb-brand-logo {
+        display: block;
+        width: 200px;
+        height: auto;
+      }
+
+      .pmb .pmb-nav-panel-inner {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 22px;
+      }
+
+      .pmb .pmb-nav {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        flex-wrap: wrap;
+        gap: 22px;
+      }
+
+      .pmb .pmb-nav-link {
+        color: var(--ink);
+        font-size: 0.9rem;
+        font-weight: 600;
+        transition: color 180ms ease;
+      }
+
+      .pmb .pmb-nav-link:hover {
+        color: var(--blue);
+      }
+
+      /* Tombol hamburger, hanya tampil di layar kecil */
+      .pmb .pmb-nav-toggle {
+        display: none;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        padding: 0;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-sm);
+        color: var(--navy);
+        background: #ffffff;
+        cursor: pointer;
+        touch-action: manipulation;
+        transition:
+          background-color 180ms ease,
+          border-color 180ms ease;
+      }
+
+      .pmb .pmb-nav-toggle:hover {
+        border-color: var(--blue);
+        background: var(--surface-blue);
+      }
+
+      .pmb .pmb-nav-toggle-bars {
+        position: relative;
+        display: block;
+        width: 20px;
+        height: 14px;
+      }
+
+      .pmb .pmb-nav-toggle-bars span {
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        border-radius: 2px;
+        background: currentColor;
+        transition:
+          transform 220ms ease,
+          opacity 160ms ease;
+      }
+
+      .pmb .pmb-nav-toggle-bars span:nth-child(1) {
+        top: 0;
+      }
+
+      .pmb .pmb-nav-toggle-bars span:nth-child(2) {
+        top: 6px;
+      }
+
+      .pmb .pmb-nav-toggle-bars span:nth-child(3) {
+        top: 12px;
+      }
+
+      .pmb .pmb-nav-toggle[aria-expanded="true"] .pmb-nav-toggle-bars span:nth-child(1) {
+        transform: translateY(6px) rotate(45deg);
+      }
+
+      .pmb .pmb-nav-toggle[aria-expanded="true"] .pmb-nav-toggle-bars span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .pmb .pmb-nav-toggle[aria-expanded="true"] .pmb-nav-toggle-bars span:nth-child(3) {
+        transform: translateY(-6px) rotate(-45deg);
+      }
+
+      /* [KOMPONEN 09] Hero */
+      .pmb .pmb-hero {
+        position: relative;
+        overflow: hidden;
+        padding-block: 76px 88px;
+        background:
+          radial-gradient(ellipse at 88% 6%, #e4eeff 0, transparent 40%),
+          radial-gradient(ellipse at 2% 98%, #ffe6d2 0, transparent 34%),
+          linear-gradient(135deg, #ffffff 0%, #f5f8fd 100%);
+      }
+
+      .pmb .pmb-hero-grid {
+        display: grid;
+        grid-template-columns: 1.04fr 0.96fr;
+        align-items: stretch;
+        gap: 56px;
+      }
+
+      .pmb .pmb-hero-copy {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      /* Judul hero: biru (utama, besar) lalu oranye (pendukung, lebih kecil) */
+      .pmb .pmb-hero-title {
+        max-width: 640px;
+        margin-bottom: 22px;
+        font-size: clamp(2.45rem, 4.3vw, 3.85rem);
+        font-weight: 800;
+        line-height: 1.1;
+        letter-spacing: -0.03em;
+      }
+
+      .pmb .pmb-hero-title-blue {
+        display: block;
+        color: var(--blue);
+      }
+
+      .pmb .pmb-hero-title-orange {
+        display: block;
+        margin-top: 6px;
+        color: var(--orange-text);
+        font-size: 0.74em;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+      }
+
+      /* Caption di bawah judul */
+      .pmb .pmb-hero-caption {
+        max-width: 560px;
+        margin-bottom: 18px;
+        padding-left: 20px;
+        border-left: 4px solid var(--orange);
+        color: var(--ink);
+        font-size: 1.16rem;
+        font-weight: 500;
+        line-height: 1.65;
+      }
+
+      .pmb .pmb-hero-caption strong {
+        color: var(--navy);
+        font-weight: 700;
+      }
+
+      .pmb .pmb-hero-description {
+        max-width: 560px;
+        margin-bottom: 30px;
+        font-size: 1rem;
+        line-height: 1.75;
+      }
+
+      .pmb .pmb-hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .pmb .pmb-hero-note {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 26px;
+        color: var(--muted);
+        font-size: 0.88rem;
+        font-weight: 500;
+      }
+
+      .pmb .pmb-hero-note svg {
+        width: 20px;
+        height: 20px;
+        flex-shrink: 0;
+        color: var(--blue);
+      }
+
+      /* Visual hero: foto gedung kampus, tinggi disejajarkan dengan kolom teks */
+      .pmb .pmb-hero-visual {
+        position: relative;
+        display: grid;
+        align-items: stretch;
+        min-height: 460px;
+      }
+
+      /* Efek panel putih di belakang foto */
+      .pmb .pmb-hero-visual::before {
+        position: absolute;
+        inset: 26px -26px -26px 26px;
+        border-radius: 44px;
+        background: #ffffff;
+        box-shadow: 0 34px 70px rgb(11 52 113 / 16%);
+        content: "";
+        transform: rotate(-2.5deg);
+      }
+
+      .pmb .pmb-hero-visual::after {
+        position: absolute;
+        top: -30px;
+        right: -26px;
+        z-index: 0;
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        background: var(--orange-gradient);
+        opacity: 0.3;
+        content: "";
+      }
+
+      .pmb .pmb-hero-photo {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        min-height: 460px;
+        max-height: 640px;
+        overflow: hidden;
+        margin: 0;
+        border-radius: 32px;
+        background: var(--surface-soft);
+        box-shadow: 0 28px 60px rgb(11 52 113 / 18%);
+        transition: box-shadow 320ms ease;
+      }
+
+      .pmb .pmb-hero-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      /* Foto hero membesar halus saat kursor lewat */
+      .pmb .pmb-hero-photo:hover img {
+        transform: scale(1.08);
+      }
+
+      .pmb .pmb-hero-photo:hover {
+        box-shadow: 0 36px 76px rgb(11 52 113 / 26%);
+      }
+
+      .pmb .pmb-hero-photo::after {
+        position: absolute;
+        inset: auto 0 0;
+        height: 46%;
+        background: linear-gradient(to top, rgb(11 52 113 / 40%), rgb(11 52 113 / 0%));
+        content: "";
+        pointer-events: none;
+      }
+
+      .pmb .pmb-hero-badge {
+        position: absolute;
+        right: -14px;
+        bottom: 30px;
+        z-index: 2;
+        max-width: 240px;
+        padding: 18px 22px;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        background: #ffffff;
+        box-shadow: var(--shadow-card-hover);
+        transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      /* Badge ikut terangkat saat foto hero di-hover */
+      .pmb .pmb-hero-visual:hover .pmb-hero-badge {
+        transform: translateY(-6px);
+      }
+
+      .pmb .pmb-hero-badge strong {
+        display: block;
+        color: var(--navy);
+        font-size: 1rem;
+        font-weight: 700;
+      }
+
+      .pmb .pmb-hero-badge span {
+        display: block;
+        margin-top: 4px;
+        color: var(--muted);
+        font-size: 0.84rem;
+        font-weight: 500;
+      }
+
+      @media (max-width: 900px) {
+        .pmb .pmb-header-inner {
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+          gap: 16px;
+          min-height: 68px;
+          padding-block: 12px;
+        }
+
+        .pmb .pmb-brand-logo {
+          width: 170px;
+        }
+
+        .pmb .pmb-nav-toggle {
+          display: inline-flex;
+        }
+
+        .pmb .pmb-nav-panel {
+          position: absolute;
+          top: 100%;
+          right: 0;
+          left: 0;
+          max-height: 0;
+          overflow: hidden;
+          visibility: hidden;
+          background: #ffffff;
+          border-bottom: 0 solid var(--line);
+          box-shadow: none;
+          transition:
+            max-height 240ms ease,
+            visibility 0s linear 240ms;
+        }
+
+        .pmb .pmb-nav-panel[data-open="true"] {
+          max-height: 440px;
+          visibility: visible;
+          border-bottom-width: 1px;
+          box-shadow: 0 18px 30px rgb(11 52 113 / 10%);
+          transition:
+            max-height 240ms ease,
+            visibility 0s;
+        }
+
+        .pmb .pmb-nav-panel-inner {
+          flex-direction: column;
+          align-items: stretch;
+          gap: 4px;
+          width: min(var(--container), calc(100% - 48px));
+          margin-inline: auto;
+          padding-block: 10px 20px;
+        }
+
+        .pmb .pmb-nav {
+          flex-direction: column;
+          align-items: stretch;
+          justify-content: flex-start;
+          gap: 0;
+        }
+
+        .pmb .pmb-nav-link {
+          padding: 14px 0;
+          font-size: 1rem;
+        }
+
+        .pmb .pmb-nav-link:not(:last-child) {
+          border-bottom: 1px solid var(--line);
+        }
+
+        .pmb .pmb-nav-cta {
+          width: 100%;
+          margin-top: 16px;
+        }
+
+        .pmb .pmb-hero {
+          padding-block: 56px;
+        }
+
+        .pmb .pmb-hero-grid {
+          grid-template-columns: 1fr;
+          gap: 38px;
+        }
+
+        .pmb .pmb-hero-visual {
+          min-height: 320px;
+        }
+
+        .pmb .pmb-hero-visual::before {
+          inset: 18px -16px -18px 16px;
+          border-radius: 34px;
+        }
+
+        .pmb .pmb-hero-visual::after {
+          top: -24px;
+          right: -18px;
+          width: 110px;
+          height: 110px;
+        }
+
+        .pmb .pmb-hero-photo {
+          height: auto;
+          min-height: 0;
+          max-height: none;
+          aspect-ratio: 4 / 3;
+        }
+
+        .pmb .pmb-hero-badge {
+          right: 0;
+          bottom: 20px;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .pmb .pmb-header-inner {
+          gap: 12px;
+        }
+
+        .pmb .pmb-brand-logo {
+          width: 145px;
+        }
+
+        .pmb .pmb-nav-panel-inner {
+          width: calc(100% - 36px);
+        }
+
+        .pmb .pmb-nav-link {
+          font-size: 0.95rem;
+        }
+
+        .pmb .pmb-hero-title {
+          font-size: clamp(2.15rem, 10vw, 3rem);
+        }
+
+        .pmb .pmb-hero-caption {
+          font-size: 1.05rem;
+        }
+
+        .pmb .pmb-hero-actions {
+          flex-direction: column;
+        }
+
+        .pmb .pmb-hero-visual {
+          min-height: 240px;
+        }
+
+        .pmb .pmb-hero-visual::before {
+          inset: 14px -12px -14px 12px;
+          border-radius: 28px;
+        }
+
+        .pmb .pmb-hero-photo {
+          border-radius: 24px;
+        }
+
+        .pmb .pmb-hero-badge {
+          right: 0;
+          bottom: 12px;
+          max-width: 205px;
+          padding: 14px 16px;
+        }
+      }
+      
+/* [KOMPONEN 12] Program studi */
+.pmb .pmb-program-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  height: 100%;
+}
+
+.pmb .pmb-program-card h3 {
+  margin-bottom: 0;
+  color: var(--navy);
+}
+
+.pmb .pmb-program-card p {
+  margin-bottom: 0;
+  font-size: 0.94rem;
+}
+
+/* Ajakan melihat seluruh program studi */
+.pmb .pmb-program-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: var(--space-4);
+  padding: 20px 24px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--surface-soft);
+}
+
+.pmb .pmb-program-cta .pmb-note {
+  margin: 0;
+}
+
+.pmb .pmb-program-cta .pmb-button {
+  flex-shrink: 0;
+}
+
+.pmb .pmb-text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 8px;
+  color: var(--blue);
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+.pmb .pmb-text-link:hover {
+  color: var(--navy);
+}
+
+/* [KOMPONEN 13] Informasi universitas (layout asimetris, tidak kaku) */
+.pmb .pmb-info {
+  display: grid;
+  grid-template-columns: 0.94fr 1.06fr;
+  align-items: stretch;
+  gap: 32px;
+}
+
+.pmb .pmb-info-intro {
+  position: relative;
+  overflow: hidden;
+  padding: 40px;
+  border-radius: var(--radius-lg);
+  color: #ffffff;
+  background: var(--blue-gradient);
+  box-shadow: 0 26px 56px rgb(11 52 113 / 22%);
+}
+
+.pmb .pmb-info-intro::after {
+  position: absolute;
+  right: -80px;
+  bottom: -90px;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: var(--orange-gradient);
+  opacity: 0.22;
+  content: "";
+}
+
+.pmb .pmb-info-intro .pmb-eyebrow {
+  color: #ffc38a;
+}
+
+.pmb .pmb-info-intro h2 {
+  margin-bottom: 18px;
+  color: #ffffff;
+  font-size: clamp(1.8rem, 3vw, 2.55rem);
+}
+
+.pmb .pmb-info-intro p {
+  margin-bottom: 26px;
+  color: #dbe6fb;
+  font-size: 1.04rem;
+  line-height: 1.75;
+}
+
+.pmb .pmb-info-links {
+  padding: 22px 0 0;
+  margin: 26px 0 0;
+  border-top: 1px solid rgb(255 255 255 / 22%);
+  list-style: none;
+}
+
+.pmb .pmb-info-links li {
+  margin-bottom: 10px;
+  font-size: 0.98rem;
+  font-weight: 500;
+}
+
+.pmb .pmb-info-links a {
+  color: #ffffff;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.pmb .pmb-info-links a:hover {
+  color: #ffc38a;
+}
+
+.pmb .pmb-info-intro .pmb-button--secondary {
+  border-color: transparent;
+}
+
+.pmb .pmb-info-cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.pmb .pmb-info-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 26px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: #ffffff;
+  box-shadow: var(--shadow-card);
+  transition:
+    transform 200ms ease,
+    box-shadow 200ms ease,
+    border-color 200ms ease;
+}
+
+.pmb .pmb-info-card:hover {
+  transform: translateY(var(--lift));
+  border-color: var(--line-accent);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.pmb .pmb-info-card--wide {
+  grid-column: 1 / -1;
+}
+
+.pmb .pmb-info-card-icon {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+  margin-bottom: 4px;
+  border-radius: 14px;
+  color: var(--blue);
+  background: var(--surface-blue);
+}
+
+.pmb .pmb-info-card--accent .pmb-info-card-icon {
+  color: #ffffff;
+  background: var(--orange-gradient);
+}
+
+.pmb .pmb-info-card-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.pmb .pmb-info-card-label {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.pmb .pmb-info-card-title {
+  margin: 0;
+  color: var(--navy);
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.pmb .pmb-info-card p {
+  margin: 0;
+  font-size: 1.02rem;
+  line-height: 1.7;
+}
+
+.pmb .pmb-info-card .pmb-text-link {
+  margin-top: 4px;
+}
+
+/* [KOMPONEN 14] Timeline pendaftaran */
+.pmb .pmb-timeline {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  counter-reset: steps;
+}
+
+.pmb .pmb-timeline li {
+  position: relative;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: #ffffff;
+  counter-increment: steps;
+  transition:
+    transform 200ms ease,
+    box-shadow 200ms ease,
+    border-color 200ms ease;
+}
+
+.pmb .pmb-timeline li:hover {
+  transform: translateY(var(--lift));
+  border-color: var(--line-accent);
+  box-shadow: var(--shadow-card-hover);
+}
+
+        /* Rel penghubung hanya tampak di celah antar kartu (dibelakang kartu) */
+        .pmb .pmb-timeline li::after {
+          position: absolute;
+          top: 44px;
+          right: auto;
+          left: auto;
+          z-index: 2;
+          width: 24px;
+          height: 3px;
+          border-radius: var(--radius-pill);
+          background: linear-gradient(90deg, var(--blue), #4f8ae0);
+          content: "";
+          opacity: 0.55;
+        }
+
+        /* Baris 1 dibaca dari kiri ke kanan: garis keluar ke kanan kartu 1 dan 2 */
+        .pmb .pmb-timeline li[data-step="1"]::after,
+        .pmb .pmb-timeline li[data-step="2"]::after {
+          left: 100%;
+        }
+
+        /* Baris 2 dibaca dari kanan ke kiri (pola zigzag) */
+        .pmb .pmb-timeline li[data-step="4"],
+        .pmb .pmb-timeline li[data-step="5"],
+        .pmb .pmb-timeline li[data-step="6"] {
+          order: 6;
+        }
+
+        .pmb .pmb-timeline li[data-step="5"] {
+          order: 5;
+        }
+
+        .pmb .pmb-timeline li[data-step="6"] {
+          order: 4;
+        }
+
+        .pmb .pmb-timeline li[data-step="4"]::after,
+        .pmb .pmb-timeline li[data-step="5"]::after {
+          right: 100%;
+          background: linear-gradient(270deg, var(--blue), #4f8ae0);
+        }
+
+        /* Kartu 3 dan 6 tidak memakai garis horizontal */
+        .pmb .pmb-timeline li[data-step="3"]::after,
+        .pmb .pmb-timeline li[data-step="6"]::after {
+          display: none;
+        }
+
+        /* Konektor vertikal dari langkah 3 turun ke langkah 4 (di dalam celah baris) */
+        .pmb .pmb-timeline-drop {
+          position: absolute;
+          top: calc(100% + 1px);
+          left: 45px;
+          z-index: 2;
+          width: 3px;
+          height: 23px;
+          border-radius: var(--radius-pill);
+          background: linear-gradient(180deg, var(--blue), #4f8ae0);
+          opacity: 0.55;
+        }
+
+
+.pmb .pmb-timeline li::before {
+  position: relative;
+  z-index: 3;
+  display: grid;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+  margin-bottom: 18px;
+  border-radius: 50%;
+  color: #ffffff;
+  background: var(--blue);
+  font-weight: 700;
+  content: counter(steps);
+}
+
+.pmb .pmb-timeline h3 {
+  margin-bottom: 8px;
+  color: var(--navy);
+}
+
+.pmb .pmb-timeline p {
+  margin-bottom: 0;
+  font-size: 0.94rem;
+}
+
+/* [KOMPONEN 15] Galeri kampus: 1 foto vertikal + 2 foto persegi */
+.pmb .pmb-gallery {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  align-items: stretch;
+  gap: 16px;
+  max-width: 680px;
+  margin-inline: auto;
+}
+
+.pmb .pmb-gallery-stack {
+  display: grid;
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.pmb .pmb-gallery-item {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  margin: 0;
+  border-radius: var(--radius-md);
+  background: var(--surface-soft);
+  box-shadow: var(--shadow-card);
+}
+
+.pmb .pmb-gallery-item img {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  flex: 1 1 auto;
+  object-fit: cover;
+}
+
+.pmb .pmb-gallery-item--tall img {
+  min-height: 0;
+}
+
+.pmb .pmb-gallery-item--square img {
+  min-height: 0;
+}
+
+      .pmb .pmb-gallery-item figcaption {
+        min-height: 5.4em;
+        padding: 16px 18px;
+        color: var(--ink);
+        font-size: 0.95rem;
+        font-weight: 600;
+      }
+
+
+/* [KOMPONEN 16] FAQ */
+.pmb .pmb-faq {
+  width: 100%;
+}
+
+.pmb .pmb-faq-item {
+  border-bottom: 1px solid var(--line);
+}
+
+.pmb .pmb-faq-item summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 22px 4px;
+  cursor: pointer;
+  list-style: none;
+  color: var(--navy);
+  font-size: 1.06rem;
+  font-weight: 700;
+}
+
+.pmb .pmb-faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.pmb .pmb-faq-item summary::after {
+  content: "+";
+  color: var(--blue);
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.pmb .pmb-faq-item[open] summary::after {
+  content: "−";
+}
+
+.pmb .pmb-faq-answer {
+  padding: 0 4px 20px;
+}
+
+.pmb .pmb-faq-answer p {
+  margin-bottom: 10px;
+}
+
+.pmb .pmb-faq-answer a {
+  color: var(--blue);
+  font-weight: 700;
+}
+
+/* [KOMPONEN 17] CTA dan footer */
+.pmb .pmb-cta {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.22fr 0.78fr;
+  align-items: center;
+  gap: 40px;
+  overflow: hidden;
+  padding: 52px;
+  border-radius: var(--radius-lg);
+  color: #ffffff;
+  background: var(--blue-gradient);
+  box-shadow: 0 30px 70px rgb(11 52 113 / 24%);
+}
+
+.pmb .pmb-cta::before {
+  position: absolute;
+  top: -130px;
+  right: -70px;
+  width: 340px;
+  height: 340px;
+  border-radius: 50%;
+  background: var(--orange-gradient);
+  opacity: 0.2;
+  content: "";
+}
+
+.pmb .pmb-cta h2 {
+  max-width: 620px;
+  margin-bottom: 14px;
+  color: #ffffff;
+}
+
+.pmb .pmb-cta p {
+  max-width: 580px;
+  margin-bottom: 0;
+  color: #d9e5fa;
+  font-size: 1.02rem;
+}
+
+.pmb .pmb-cta .pmb-eyebrow {
+  color: #ffc38a;
+}
+
+.pmb .pmb-cta-card {
+  position: relative;
+  z-index: 1;
+  padding: 28px;
+  border-radius: var(--radius-md);
+  color: #3d1f05;
+  background: var(--orange-gradient);
+  box-shadow: 0 18px 40px rgb(11 52 113 / 28%);
+}
+
+.pmb .pmb-cta-card strong {
+  display: block;
+  font-size: 1.08rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.pmb .pmb-cta-card p {
+  margin: 8px 0 18px;
+  color: #4a2708;
+  font-size: 0.95rem;
+}
+
+.pmb .pmb-cta-card .pmb-button {
+  color: var(--navy);
+  background: #ffffff;
+  border-color: transparent;
+}
+
+.pmb .pmb-cta-card .pmb-button:hover {
+  background: #fff5ec;
+}
+
+.pmb .pmb-footer {
+  color: #ffffff;
+  background: linear-gradient(155deg, #0d3a7d 0%, #0a2b5c 48%, #061a39 100%);
+}
+
+.pmb .pmb-footer-accent {
+  height: 6px;
+  background: linear-gradient(90deg, #ff7417 0%, #ffa14a 34%, #1556bd 100%);
+}
+
+.pmb .pmb-footer-inner {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 40px;
+  padding: 48px 0 28px;
+}
+
+.pmb .pmb-footer-title {
+  display: block;
+  margin-bottom: 14px;
+  color: #ffffff;
+  font-size: 1.06rem;
+  font-weight: 700;
+}
+
+.pmb .pmb-footer-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.pmb .pmb-footer-brand-mark {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border-radius: 12px;
+  color: var(--navy);
+  background: var(--orange-gradient);
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
+.pmb .pmb-footer p {
+  margin-bottom: 8px;
+  color: #c9d8f2;
+  font-size: 0.95rem;
+  font-weight: 400;
+}
+
+.pmb .pmb-footer a {
+  color: #ffffff;
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.pmb .pmb-footer a:hover {
+  color: #ffc38a;
+}
+
+.pmb .pmb-footer-links {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.pmb .pmb-footer-links li {
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+}
+
+.pmb .pmb-footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 18px 0 30px;
+  border-top: 1px solid rgb(255 255 255 / 16%);
+  color: #a9bcd9;
+  font-size: 0.86rem;
+  font-weight: 400;
+}
+
+@media (max-width: 900px) {
+  /* Alur dibaca vertikal: satu kolom dengan garis biru di kiri kartu */
+  .pmb .pmb-timeline {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .pmb .pmb-timeline li,
+  .pmb .pmb-timeline li[data-step="4"],
+  .pmb .pmb-timeline li[data-step="5"],
+  .pmb .pmb-timeline li[data-step="6"] {
+    order: 0;
+  }
+
+  .pmb .pmb-timeline li::after,
+  .pmb .pmb-timeline li[data-step="1"]::after,
+  .pmb .pmb-timeline li[data-step="2"]::after,
+  .pmb .pmb-timeline li[data-step="4"]::after,
+  .pmb .pmb-timeline li[data-step="5"]::after {
+    top: calc(100% + 1px);
+    right: auto;
+    bottom: auto;
+    left: 45px;
+    width: 3px;
+    height: 16px;
+    background: linear-gradient(180deg, var(--blue), #4f8ae0);
+  }
+
+  .pmb .pmb-timeline li[data-step="6"]::after {
+    display: none;
+  }
+
+  .pmb .pmb-timeline-drop {
+    display: none;
+  }
+
+  .pmb .pmb-info {
+    grid-template-columns: 1fr;
+  }
+
+  .pmb .pmb-gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .pmb .pmb-gallery-stack {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: none;
+  }
+
+  .pmb .pmb-gallery-item--tall {
+    max-width: 460px;
+    margin-inline: auto;
+  }
+
+  .pmb .pmb-gallery-item--tall img {
+    height: auto;
+    aspect-ratio: 4 / 5;
+    max-height: 620px;
+    min-height: 0;
+  }
+
+  .pmb .pmb-gallery-item--square img {
+    min-height: 200px;
+  }
+
+  .pmb .pmb-cta {
+    grid-template-columns: 1fr;
+    padding: 36px;
+  }
+
+  .pmb .pmb-footer-inner {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+}
+
+@media (max-width: 600px) {
+  .pmb .pmb-timeline,
+  .pmb .pmb-gallery,
+  .pmb .pmb-gallery-stack,
+  .pmb .pmb-info-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .pmb .pmb-info-intro {
+    padding: 28px;
+  }
+
+  .pmb .pmb-info-card {
+    padding: 22px;
+  }
+
+  .pmb .pmb-gallery-item--tall img {
+    height: auto;
+    aspect-ratio: 4 / 5;
+    max-height: 460px;
+    min-height: 0;
+  }
+
+  .pmb .pmb-gallery-item--square img {
+    min-height: 180px;
+  }
+
+  .pmb .pmb-cta {
+    padding: 26px;
+  }
+
+  .pmb .pmb-cta-card {
+    padding: 22px;
+  }
+
+  .pmb .pmb-footer-inner {
+    padding: 36px 0 24px;
+  }
+}
+
+/* [KOMPONEN 20] Animasi muncul saat digulir */
+.pmb.pmb-reveal-ready [data-reveal] {
+  opacity: 0;
+  translate: 0 26px;
+  transition:
+    opacity 620ms ease,
+    translate 620ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 200ms ease,
+    box-shadow 200ms ease,
+    border-color 200ms ease;
+}
+
+.pmb.pmb-reveal-ready [data-reveal].is-visible {
+  opacity: 1;
+  translate: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pmb.pmb-reveal-ready [data-reveal] {
+    opacity: 1;
+    translate: none;
+  }
+}
+
+/* [KOMPONEN 18] Tombol kembali ke atas */
+.pmb .pmb-to-top {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  z-index: 30;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 12px 20px 12px 16px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-pill);
+  color: #ffffff;
+  background: var(--navy);
+  box-shadow: 0 14px 30px rgb(11 52 113 / 24%);
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-50%) translateY(16px);
+  transition:
+    opacity 200ms ease,
+    transform 200ms ease,
+    visibility 0s linear 200ms,
+    background-color 180ms ease;
+}
+
+.pmb .pmb-to-top[data-visible="true"] {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%);
+  transition:
+    opacity 200ms ease,
+    transform 200ms ease,
+    visibility 0s;
+}
+
+.pmb .pmb-to-top:hover {
+  background: var(--blue);
+  transform: translateX(-50%) translateY(-3px);
+}
+
+.pmb .pmb-to-top:focus-visible {
+  outline: 3px solid var(--orange);
+  outline-offset: 3px;
+}
+
+.pmb .pmb-to-top svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.pmb .pmb-to-top-label {
+  font-size: 0.86rem;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .pmb .pmb-to-top {
+    bottom: 16px;
+    left: 50%;
+    min-height: 46px;
+    padding: 12px 14px;
+  }
+
+  /* Di layar kecil teks disembunyikan secara visual, tetap terbaca screen reader */
+  .pmb .pmb-to-top-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}
+
+    </style>
+  </head>
+
+  <body>
+    <div class="pmb" id="pmb-home">
+      <a class="pmb-skip-link" href="#pmb-main">
+        Lewati navigasi, langsung ke konten
+      </a>
+
+      <main id="pmb-main">
+        <!-- [KOMPONEN 10] Header navigasi -->
+        <header class="pmb-header">
+          <div class="pmb-container pmb-header-inner">
+            <a
+              class="pmb-brand"
+              href="#pmb-home"
+              aria-label="PMB Universitas Widyatama, beranda"
+            >
+              <img
+                class="pmb-brand-logo"
+                src="assets/logo-widyatama.webp"
+                alt="Logo Universitas Widyatama"
+                width="1663"
+                height="402"
+                decoding="async"
+              />
+            </a>
+
+            <button
+              class="pmb-nav-toggle"
+              type="button"
+              aria-expanded="false"
+              aria-controls="pmb-nav-panel"
+            >
+              <span class="pmb-nav-toggle-bars" aria-hidden="true">
+                <span></span>
+                <span></span>
+                <span></span>
+              </span>
+              <span class="pmb-sr-only pmb-nav-toggle-label">Buka menu navigasi</span>
+            </button>
+
+            <div class="pmb-nav-panel" id="pmb-nav-panel" data-open="false">
+              <div class="pmb-nav-panel-inner">
+                <nav class="pmb-nav" aria-label="Navigasi utama">
+                  <a class="pmb-nav-link" href="#pmb-program">Program Studi</a>
+                  <a class="pmb-nav-link" href="#pmb-alur">Cara Daftar</a>
+                  <a class="pmb-nav-link" href="#pmb-biaya">Biaya &amp; Beasiswa</a>
+                  <a class="pmb-nav-link" href="#pmb-kampus">Kehidupan Kampus</a>
+                  <a class="pmb-nav-link" href="#pmb-faq">FAQ</a>
+                </nav>
+
+                <a class="pmb-button pmb-button--primary pmb-nav-cta" href="#pmb-daftar">
+                  Daftar Sekarang
+                </a>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <!-- [KOMPONEN 11] Hero utama -->
+        <section class="pmb-hero" aria-labelledby="pmb-hero-title">
+          <div class="pmb-container pmb-hero-grid">
+            <div class="pmb-hero-copy">
+              <h1 class="pmb-hero-title" id="pmb-hero-title">
+                <span class="pmb-hero-title-blue">Penerimaan Mahasiswa Baru</span>
+                <span class="pmb-hero-title-orange">Universitas Widyatama</span>
+              </h1>
+
+              <p class="pmb-hero-caption">
+                <strong>Mengenali program studi</strong> adalah langkah awal
+                untuk menentukan arah masa depanmu.
+              </p>
+
+              <p class="pmb-hero-description">
+                Temukan program studi yang sesuai dengan minatmu, kembangkan
+                potensimu, dan mulai perjalanan akademikmu bersama Universitas
+                Widyatama.
+              </p>
+
+              <div class="pmb-hero-actions">
+                <a class="pmb-button pmb-button--primary" href="#pmb-daftar">
+                  Mulai Pendaftaran
+                </a>
+
+                <a class="pmb-button pmb-button--secondary" href="#pmb-program">
+                  Jelajahi Program Studi
+                </a>
+              </div>
+
+              <div class="pmb-hero-note">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <circle cx="12" cy="12" r="9"></circle>
+                  <path d="m8 12 2.5 2.5L16 9"></path>
+                </svg>
+                <span>Kenali pilihan studi dan informasi pendaftaran.</span>
+              </div>
+            </div>
+
+            <div class="pmb-hero-visual">
+              <figure class="pmb-hero-photo">
+                <img
+                  src="https://pmb.widyatama.ac.id/wp-content/uploads/2026/10/widyatama-1.webp"
+                  alt="Gedung kampus Universitas Widyatama di Bandung"
+                  width="720" height="405"
+                  fetchpriority="high" decoding="async">
+              </figure>
+
+              <div class="pmb-hero-badge">
+                <strong>Mulai perjalananmu</strong>
+                <span>Kenali pilihan, tentukan tujuan.</span>
+              </div>
+            </div>
+          </div>
+        </section>
+        
+<!-- [KOMPONEN 12] Informasi universitas -->
+<section class="pmb-section pmb-section--soft" id="pmb-informasi"
+  aria-labelledby="pmb-informasi-title">
+  <div class="pmb-container">
+    <div class="pmb-info">
+      <div class="pmb-info-intro">
+        <span class="pmb-eyebrow">Kenali kampus</span>
+        <h2 id="pmb-informasi-title">Informasi Universitas Widyatama</h2>
+        <p>
+          Universitas Widyatama berada di pusat kota Bandung dengan lingkungan
+          kampus yang mudah dijangkau. Mulailah dari informasi dasar ini,
+          lalu lanjutkan ke portal resmi untuk detail penerimaan, biaya, dan
+          pendaftaran.
+        </p>
+        <a class="pmb-button pmb-button--secondary"
+          href="https://pmb.widyatama.ac.id/"
+          target="_blank" rel="noopener noreferrer">
+          Kunjungi Portal PMB
+        </a>
+
+        <ul class="pmb-info-links">
+          <li>
+            <a href="https://pmb.widyatama.ac.id/jurusan/"
+              target="_blank" rel="noopener noreferrer">Daftar program studi</a>
+          </li>
+          <li>
+            <a href="https://pmb.widyatama.ac.id/jalur-seleksi/"
+              target="_blank" rel="noopener noreferrer">Jalur seleksi penerimaan</a>
+          </li>
+          <li>
+            <a href="https://pmb.widyatama.ac.id/petunjuk-pendaftaran/"
+              target="_blank" rel="noopener noreferrer">Petunjuk pendaftaran</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="pmb-info-cards">
+        <article class="pmb-info-card pmb-info-card--accent">
+          <span class="pmb-info-card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+          </span>
+          <span class="pmb-info-card-label">Lokasi kampus</span>
+          <h3 class="pmb-info-card-title">Jl. Cikutra No. 204 A</h3>
+          <p>Bandung, Jawa Barat 40124.</p>
+          <a class="pmb-text-link"
+            href="https://www.widyatama.ac.id/en/contact-us/"
+            target="_blank" rel="noopener noreferrer">Lihat lokasi resmi </a>
+        </article>
+
+        <article class="pmb-info-card">
+          <span class="pmb-info-card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="9"/>
+              <path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/>
+            </svg>
+          </span>
+          <span class="pmb-info-card-label">Portal PMB resmi</span>
+          <h3 class="pmb-info-card-title">pmb.widyatama.ac.id</h3>
+          <p>Semua informasi penerimaan mahasiswa baru dalam satu portal.</p>
+          <a class="pmb-text-link"
+            href="https://pmb.widyatama.ac.id/"
+            target="_blank" rel="noopener noreferrer">Kunjungi situs PMB </a>
+        </article>
+
+        <article class="pmb-info-card">
+          <span class="pmb-info-card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 4h4l2 5-3 2a12 12 0 0 0 5 5l2-3 5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/>
+            </svg>
+          </span>
+          <span class="pmb-info-card-label">Informasi kontak</span>
+          <h3 class="pmb-info-card-title">+62-22-7275855</h3>
+          <p>Hubungi bagian penerimaan untuk pertanyaan pendaftaran.</p>
+          <a class="pmb-text-link" href="tel:+62227275855">Telepon kampus </a>
+        </article>
+
+        <article class="pmb-info-card">
+          <span class="pmb-info-card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="5" width="18" height="14" rx="2"/>
+              <path d="M3 10h18M7 15h3"/>
+            </svg>
+          </span>
+          <span class="pmb-info-card-label">Biaya kuliah</span>
+          <h3 class="pmb-info-card-title">Rincian biaya resmi</h3>
+          <p>
+            Periksa ketentuan biaya kuliah terbaru melalui halaman resmi
+            kampus, termasuk info kelas reguler dan kelas karyawan.
+          </p>
+          <a class="pmb-text-link"
+            href="https://pmb.widyatama.ac.id/biaya-kuliah-kelas-reguler/"
+            target="_blank" rel="noopener noreferrer">Lihat informasi biaya </a>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- [KOMPONEN 13] Program studi -->
+<section class="pmb-section" id="pmb-program"
+  aria-labelledby="pmb-program-title">
+  <div class="pmb-container">
+    <div class="pmb-section-heading">
+      <span class="pmb-eyebrow">Temukan pilihanmu</span>
+      <h2 id="pmb-program-title">Pilih bidang yang ingin kamu tekuni</h2>
+      <p>Kenali beberapa contoh program studi, lalu kunjungi direktori resmi untuk melihat daftar lengkap dan informasi terbarunya.</p>
+    </div>
+
+    <div class="pmb-grid pmb-grid--2">
+      <article class="pmb-card pmb-program-card">
+        <div class="pmb-icon-box" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2.5" y="4" width="19" height="12.5" rx="2"/>
+            <path d="M8 20h8M12 16.5V20"/>
+            <path d="M6.5 8h5M6.5 11.5h3"/>
+          </svg>
+        </div>
+        <h3>S1 Sistem Informasi</h3>
+        <p>Mempelajari sistem, data, dan teknologi yang menopang organisasi modern.</p>
+        <a class="pmb-text-link"
+          href="https://pmb.widyatama.ac.id/jurusan/"
+          target="_blank" rel="noopener noreferrer">Lihat informasi resmi </a>
+      </article>
+
+      <article class="pmb-card pmb-program-card">
+        <div class="pmb-icon-box" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 21h18M5 21V7l7-4 7 4v14"/>
+            <path d="M9 21v-5h6v5M9 9h.01M15 9h.01M9 12h.01M15 12h.01"/>
+          </svg>
+        </div>
+        <h3>S1 Manajemen</h3>
+        <p>Mengenal pengelolaan bisnis, strategi, dan organisasi.</p>
+        <a class="pmb-text-link"
+          href="https://pmb.widyatama.ac.id/jurusan/"
+          target="_blank" rel="noopener noreferrer">Lihat informasi resmi </a>
+      </article>
+
+      <article class="pmb-card pmb-program-card">
+        <div class="pmb-icon-box" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6 5.6 18.4"/>
+          </svg>
+        </div>
+        <h3>S1 Teknik Industri</h3>
+        <p>Mempelajari sistem, proses, dan peningkatan efisiensi kerja.</p>
+        <a class="pmb-text-link"
+          href="https://pmb.widyatama.ac.id/jurusan/"
+          target="_blank" rel="noopener noreferrer">Lihat informasi resmi </a>
+      </article>
+
+      <article class="pmb-card pmb-program-card">
+        <div class="pmb-icon-box" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/>
+          </svg>
+        </div>
+        <h3>S1 Perdagangan Internasional</h3>
+        <p>Mengenal aktivitas perdagangan dan bisnis lintas negara.</p>
+        <a class="pmb-text-link"
+          href="https://pmb.widyatama.ac.id/jurusan/"
+          target="_blank" rel="noopener noreferrer">Lihat informasi resmi </a>
+      </article>
+    </div>
+
+    <div class="pmb-program-cta">
+      <p class="pmb-note">
+        Daftar di atas merupakan contoh, bukan daftar lengkap program studi.
+      </p>
+
+      <a class="pmb-button pmb-button--secondary"
+        href="https://pmb.widyatama.ac.id/jurusan/"
+        target="_blank" rel="noopener noreferrer">
+        Lihat Seluruh Program Studi
+      </a>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- [KOMPONEN 14] Alur pendaftaran -->
+<section class="pmb-section pmb-section--soft" id="pmb-alur"
+  aria-labelledby="pmb-alur-title">
+  <div class="pmb-container">
+    <div class="pmb-section-heading">
+      <span class="pmb-eyebrow">Mulai langkahmu</span>
+      <h2 id="pmb-alur-title">Bagaimana cara mendaftar?</h2>
+      <p>Gunakan tahapan ini sebagai gambaran awal. Persyaratan, prosedur, dan jadwal tetap mengikuti petunjuk resmi kampus.</p>
+    </div>
+
+    <ol class="pmb-timeline">
+      <li data-step="1">
+        <h3>Kenali jalur seleksi</h3>
+        <p>Baca pilihan jalur dan persyaratan yang berlaku untuk program tujuanmu.</p>
+      </li>
+      <li data-step="2">
+        <h3>Siapkan dokumen</h3>
+        <p>Periksa dokumen yang diperlukan sesuai petunjuk pendaftaran resmi.</p>
+      </li>
+      <li data-step="3">
+        <h3>Isi formulir</h3>
+        <p>Ikuti proses pendaftaran melalui portal resmi penerimaan mahasiswa baru.</p>
+        <span class="pmb-timeline-drop" aria-hidden="true"></span>
+      </li>
+      <li data-step="4">
+        <h3>Kirim berkas</h3>
+        <p>Lengkapi data dan dokumen sesuai instruksi pada proses pendaftaran.</p>
+      </li>
+      <li data-step="5">
+        <h3>Pantau hasil seleksi</h3>
+        <p>Periksa pengumuman dan informasi lanjutan melalui kanal resmi kampus.</p>
+      </li>
+      <li data-step="6">
+        <h3>Selesaikan registrasi</h3>
+        <p>Jika diterima, ikuti instruksi registrasi dan pembayaran yang berlaku.</p>
+      </li>
+    </ol>
+
+    <a class="pmb-button pmb-button--primary pmb-section-action"
+      href="https://pmb.widyatama.ac.id/petunjuk-pendaftaran/"
+      target="_blank" rel="noopener noreferrer">
+      Baca Petunjuk Pendaftaran
+    </a>
+
+  </div>
+</section>
+
+<!-- [KOMPONEN 15] Biaya dan beasiswa -->
+<section class="pmb-section" id="pmb-biaya"
+  aria-labelledby="pmb-biaya-title">
+  <div class="pmb-container">
+    <div class="pmb-section-heading">
+      <span class="pmb-eyebrow">Rencanakan pendidikan</span>
+      <h2 id="pmb-biaya-title">Cari tahu biaya kuliah dan beasiswa</h2>
+      <p>Informasi biaya dan bantuan pendidikan perlu diperiksa berdasarkan ketentuan terbaru, bukan angka lama yang kebetulan masih beredar di internet.</p>
+    </div>
+
+    <div class="pmb-grid pmb-grid--2">
+      <article class="pmb-card">
+        <div class="pmb-icon-box" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="5" width="18" height="14" rx="2"/>
+            <path d="M3 10h18M7 15h3"/>
+          </svg>
+        </div>
+        <h3>Informasi biaya kuliah</h3>
+        <p>Periksa rincian biaya melalui halaman resmi PMB dan konfirmasikan jika ada ketentuan yang belum jelas.</p>
+        <a class="pmb-text-link"
+          href="https://pmb.widyatama.ac.id/biaya-kuliah-kelas-reguler/"
+          target="_blank" rel="noopener noreferrer">Lihat informasi biaya </a>
+      </article>
+
+      <article class="pmb-card pmb-card--highlight">
+        <span class="pmb-card--highlight-badge">Beasiswa</span>
+        <div class="pmb-icon-box" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m12 3 2.7 5.5 6.1.9-4.4 4.3 1 6.1-5.4-2.9-5.4 2.9 1-6.1-4.4-4.3 6.1-.9L12 3Z"/>
+          </svg>
+        </div>
+        <h3>Informasi beasiswa</h3>
+        <p>Pelajari peluang beasiswa, kriteria, dokumen, dan jadwal melalui informasi resmi kampus.</p>
+        <a class="pmb-text-link"
+          href="https://pmb.widyatama.ac.id/jalur-seleksi/"
+          target="_blank" rel="noopener noreferrer">Lihat jalur seleksi </a>
+      </article>
+
+      <article class="pmb-card">
+        <div class="pmb-icon-box" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M12 7v5l3 2"/>
+          </svg>
+        </div>
+        <h3>Kelas karyawan</h3>
+        <p>Temukan informasi program kelas karyawan bagi calon mahasiswa yang ingin kuliah sambil bekerja.</p>
+        <a class="pmb-text-link"
+          href="https://pmb.widyatama.ac.id/program-kelas-karyawan/"
+          target="_blank" rel="noopener noreferrer">Pelajari program </a>
+      </article>
+
+      <article class="pmb-card">
+        <div class="pmb-icon-box" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16v16H4z"/>
+            <path d="M8 8h8M8 12h8M8 16h5"/>
+          </svg>
+        </div>
+        <h3>Informasi resmi</h3>
+        <p>Gunakan sumber kampus sebagai acuan sebelum mengambil keputusan terkait pendaftaran dan pembayaran.</p>
+        <a class="pmb-text-link"
+          href="https://keuangan.widyatama.ac.id/"
+          target="_blank" rel="noopener noreferrer">Kunjungi Biro Keuangan </a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- [KOMPONEN 16] Galeri kampus -->
+<section class="pmb-section pmb-section--soft" id="pmb-kampus"
+  aria-labelledby="pmb-kampus-title">
+  <div class="pmb-container">
+    <div class="pmb-section-heading">
+      <span class="pmb-eyebrow">Suasana kampus</span>
+      <h2 id="pmb-kampus-title">Bayangkan perjalanan kuliahmu dimulai di sini</h2>
+      <p>Kenali lingkungan kampus melalui foto yang tersedia. Foto tambahan sebaiknya menggunakan dokumentasi asli kampus agar sesuai dengan kondisi sebenarnya.</p>
+    </div>
+
+    <div class="pmb-gallery">
+      <!-- GANTI FOTO: foto vertikal (tinggi) -->
+      <figure class="pmb-gallery-item pmb-gallery-item--tall">
+        <img
+          src="https://images.unsplash.com/photo-1571260899304-425eee4c7efc?w=700&h=1050&fit=crop&crop=entropy&q=75&auto=format"
+          alt="Mahasiswa Universitas Widyatama berdiskusi dalam suasana belajar kolaboratif"
+          width="700" height="1050"
+          loading="lazy" decoding="async">
+        <figcaption>Tempat tumbuhnya potensi dan proses belajar</figcaption>
+      </figure>
+
+      <div class="pmb-gallery-stack">
+        <!-- GANTI FOTO: foto persegi atas -->
+        <figure class="pmb-gallery-item pmb-gallery-item--square">
+          <img
+            src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=900&h=900&fit=crop&crop=entropy&q=75&auto=format"
+            alt="Mahasiswa berdiskusi dan belajar bersama di kelas"
+            width="900" height="900"
+            loading="lazy" decoding="async">
+          <figcaption>Belajar bersama dan berbagi karya</figcaption>
+        </figure>
+
+        <!-- GANTI FOTO: foto persegi bawah -->
+        <figure class="pmb-gallery-item pmb-gallery-item--square">
+          <img
+            src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=900&h=900&fit=crop&crop=entropy&q=75&auto=format"
+            alt="Suasana kegiatan belajar di dalam kelas"
+            width="900" height="900"
+            loading="lazy" decoding="async">
+          <figcaption>Kegiatan akademik yang kolaboratif</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- [KOMPONEN 17] FAQ -->
+
+<section class="pmb-section" id="pmb-faq"
+  aria-labelledby="pmb-faq-title">
+  <div class="pmb-container">
+    <div class="pmb-section-heading">
+      <span class="pmb-eyebrow">Pertanyaan umum</span>
+      <h2 id="pmb-faq-title">Yang perlu kamu ketahui sebelum mendaftar</h2>
+      <p>Jawaban ringkas dengan tautan ke sumber resmi untuk pemeriksaan lebih lanjut.</p>
+    </div>
+
+    <div class="pmb-faq">
+      <details class="pmb-faq-item">
+        <summary>Bagaimana cara mendaftar di Universitas Widyatama?</summary>
+        <div class="pmb-faq-answer">
+          <p>Mulai dari portal PMB resmi, pelajari persyaratan jalur seleksi, lengkapi formulir dan dokumen, lalu ikuti pengumuman serta instruksi registrasi.</p>
+          <a href="https://pmb.widyatama.ac.id/petunjuk-pendaftaran/"
+            target="_blank" rel="noopener noreferrer">Sumber: Petunjuk Pendaftaran </a>
+        </div>
+      </details>
+
+      <details class="pmb-faq-item">
+        <summary>Jalur seleksi apa saja yang tersedia?</summary>
+        <div class="pmb-faq-answer">
+          <p>Jalur seleksi dan persyaratan dapat berbeda. Periksa informasi terbaru dari halaman jalur seleksi resmi sebelum mendaftar.</p>
+          <a href="https://pmb.widyatama.ac.id/jalur-seleksi/"
+            target="_blank" rel="noopener noreferrer">Sumber: Jalur Seleksi </a>
+        </div>
+      </details>
+
+      <details class="pmb-faq-item">
+        <summary>Berapa biaya kuliah di Universitas Widyatama?</summary>
+        <div class="pmb-faq-answer">
+          <p>Biaya mengikuti ketentuan kampus dan dapat berubah. Periksa rincian terbaru melalui halaman biaya kuliah resmi.</p>
+          <a href="https://pmb.widyatama.ac.id/biaya-kuliah-kelas-reguler/"
+            target="_blank" rel="noopener noreferrer">Sumber: Biaya Kuliah </a>
+        </div>
+      </details>
+
+      <details class="pmb-faq-item">
+        <summary>Apakah tersedia beasiswa?</summary>
+        <div class="pmb-faq-answer">
+          <p>Informasi peluang beasiswa dan persyaratannya perlu diperiksa melalui pengumuman resmi kampus.</p>
+          <a href="https://pmb.widyatama.ac.id/jalur-seleksi/"
+            target="_blank" rel="noopener noreferrer">Sumber: Jalur Seleksi </a>
+        </div>
+      </details>
+
+      <details class="pmb-faq-item">
+        <summary>Program studi apa saja yang tersedia?</summary>
+        <div class="pmb-faq-answer">
+          <p>Gunakan direktori resmi untuk memeriksa daftar program studi, jenjang, dan informasi penerimaan terbaru.</p>
+          <a href="https://pmb.widyatama.ac.id/jurusan/"
+            target="_blank" rel="noopener noreferrer">Sumber: Daftar Program Studi </a>
+        </div>
+      </details>
+
+      <details class="pmb-faq-item">
+        <summary>Apakah tersedia program kelas karyawan?</summary>
+        <div class="pmb-faq-answer">
+          <p>Informasi program, ketentuan, dan proses pendaftarannya tersedia melalui halaman resmi kelas karyawan.</p>
+          <a href="https://pmb.widyatama.ac.id/program-kelas-karyawan/"
+            target="_blank" rel="noopener noreferrer">Sumber: Kelas Karyawan </a>
+        </div>
+      </details>
+
+      <details class="pmb-faq-item">
+        <summary>Di mana lokasi dan nomor telepon kampus?</summary>
+        <div class="pmb-faq-answer">
+          <p>Alamat yang tercantum pada sumber WordPress adalah Jl. Cikutra No. 204 A, Bandung, Jawa Barat 40124. Nomor telepon yang tercantum adalah +62-22-7275855.</p>
+          <a href="https://www.widyatama.ac.id/en/contact-us/"
+            target="_blank" rel="noopener noreferrer">Sumber: Kontak Universitas </a>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- [KOMPONEN 18] CTA akhir -->
+<section class="pmb-section" id="pmb-daftar"
+  aria-labelledby="pmb-daftar-title">
+  <div class="pmb-container">
+    <div class="pmb-cta">
+      <div class="pmb-cta-copy">
+        <span class="pmb-eyebrow">Langkah berikutnya</span>
+        <h2 id="pmb-daftar-title">Sudah menemukan bidang yang ingin kamu tekuni?</h2>
+        <p>Lanjutkan ke portal resmi untuk melihat informasi penerimaan, persyaratan, dan proses pendaftaran.</p>
+      </div>
+
+      <div class="pmb-cta-card">
+        <strong>Pendaftaran mahasiswa baru</strong>
+        <p>Isi formulir online dan selesaikan langkah awal di portal PMB.</p>
+        <a class="pmb-button"
+          href="https://online.pmb.widyatama.ac.id/"
+          target="_blank" rel="noopener noreferrer">
+          Buka Portal Pendaftaran
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+</main>
+
+<!-- [KOMPONEN 19] Footer -->
+<footer class="pmb-footer">
+  <div class="pmb-footer-accent" aria-hidden="true"></div>
+
+  <div class="pmb-container">
+    <div class="pmb-footer-inner">
+      <div>
+        <span class="pmb-footer-brand">
+          <span class="pmb-footer-brand-mark" aria-hidden="true">W</span>
+          <span>Universitas Widyatama</span>
+        </span>
+        <p>Jl. Cikutra No. 204 A, Bandung, Jawa Barat 40124.</p>
+        <p>Telepon: <a href="tel:+62227275855">+62-22-7275855</a></p>
+      </div>
+
+      <div>
+        <strong class="pmb-footer-title">Informasi resmi</strong>
+        <ul class="pmb-footer-links">
+          <li>
+            <a href="https://pmb.widyatama.ac.id/"
+              target="_blank" rel="noopener noreferrer">Portal PMB</a>
+          </li>
+          <li>
+            <a href="https://www.widyatama.ac.id/"
+              target="_blank" rel="noopener noreferrer">Situs utama universitas</a>
+          </li>
+          <li>
+            <a href="https://www.widyatama.ac.id/en/contact-us/"
+              target="_blank" rel="noopener noreferrer">Kontak universitas</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pmb-footer-bottom">
+      <span>© 2026 Universitas Widyatama. Informasi bersumber dari portal resmi kampus.</span>
+      <span>Penerimaan Mahasiswa Baru</span>
+    </div>
+  </div>
+    </footer>
+
+    <!-- [KOMPONEN 18] Tombol kembali ke atas -->
+    <button class="pmb-to-top" type="button" data-visible="false">
+      <svg
+        viewBox="0 0 24 24"
+        width="20"
+        height="20"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.4"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M12 19V5" />
+        <path d="M5 12l7-7 7 7" />
+      </svg>
+      <span class="pmb-to-top-label">Kembali ke atas</span>
+    </button>
+  </div>
+
+
+<script>
+  (function () {
+    var root = document.querySelector('.pmb');
+    if (!root) {
+      return;
+    }
+
+    var toggle = root.querySelector('.pmb-nav-toggle');
+    var panel = root.querySelector('.pmb-nav-panel');
+    var label = root.querySelector('.pmb-nav-toggle-label');
+    var header = root.querySelector('.pmb-header');
+    if (!toggle || !panel || !header) {
+      return;
+    }
+
+    var desktop = window.matchMedia('(min-width: 901px)');
+    var toTop = root.querySelector('.pmb-to-top');
+    var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    function setOpen(open) {
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      panel.setAttribute('data-open', open ? 'true' : 'false');
+      if (label) {
+        label.textContent = open ? 'Tutup menu navigasi' : 'Buka menu navigasi';
+      }
+    }
+
+    function isOpen() {
+      return toggle.getAttribute('aria-expanded') === 'true';
+    }
+
+    setOpen(false);
+
+    toggle.addEventListener('click', function () {
+      setOpen(!isOpen());
+    });
+
+    panel.addEventListener('click', function (event) {
+      if (event.target && event.target.closest && event.target.closest('a')) {
+        setOpen(false);
+      }
+    });
+
+    document.addEventListener('click', function (event) {
+      if (!isOpen() || header.contains(event.target)) {
+        return;
+      }
+      setOpen(false);
+    });
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key !== 'Escape' || !isOpen()) {
+        return;
+      }
+      setOpen(false);
+      toggle.focus();
+    });
+
+    function onChange() {
+      if (desktop.matches) {
+        setOpen(false);
+      }
+    }
+
+    if (typeof desktop.addEventListener === 'function') {
+      desktop.addEventListener('change', onChange);
+    } else if (typeof desktop.addListener === 'function') {
+      desktop.addListener(onChange);
+    }
+
+    /* Header jadi transparan (efek kaca) + tombol kembali ke atas */
+    var isScrolled = false;
+    var isTopVisible = false;
+    var ticking = false;
+
+    function applyScrollState() {
+      var y =
+        window.pageYOffset ||
+        document.documentElement.scrollTop ||
+        document.body.scrollTop ||
+        0;
+
+      var scrolled = y > 12;
+      if (scrolled !== isScrolled) {
+        isScrolled = scrolled;
+        header.setAttribute('data-scrolled', isScrolled ? 'true' : 'false');
+      }
+
+      var showTop = y > 420;
+      if (toTop && showTop !== isTopVisible) {
+        isTopVisible = showTop;
+        toTop.setAttribute('data-visible', isTopVisible ? 'true' : 'false');
+      }
+    }
+
+    function onScroll() {
+      if (ticking) {
+        return;
+      }
+      ticking = true;
+      window.requestAnimationFrame(function () {
+        ticking = false;
+        applyScrollState();
+      });
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    applyScrollState();
+
+    if (toTop) {
+      toTop.addEventListener('click', function () {
+        window.scrollTo({
+          top: 0,
+          behavior: reducedMotion.matches ? 'auto' : 'smooth',
+        });
+      });
+    }
+
+    /* Animasi elemen muncul saat digulir ke bawah */
+    var revealSelector = [
+      '.pmb-section-heading',
+      '.pmb-program-card',
+      '.pmb-program-cta',
+      '.pmb-info-intro',
+      '.pmb-info-card',
+      '.pmb-timeline li',
+      '.pmb-grid--2 > .pmb-card',
+      '.pmb-gallery-item',
+      '.pmb-faq-item',
+      '.pmb-cta-copy',
+      '.pmb-cta-card',
+      '.pmb-section-action',
+    ].join(', ');
+
+    var revealItems = root.querySelectorAll(revealSelector);
+
+    if (revealItems.length) {
+      if (!('IntersectionObserver' in window) || reducedMotion.matches) {
+        Array.prototype.forEach.call(revealItems, function (el) {
+          el.classList.add('is-visible');
+        });
+      } else {
+        /* Tandai elemen lebih dulu, baru aktifkan state tersembunyi (tanpa kilat) */
+        Array.prototype.forEach.call(revealItems, function (el) {
+          if (!el.hasAttribute('data-reveal')) {
+            el.setAttribute('data-reveal', '');
+          }
+        });
+        root.classList.add('pmb-reveal-ready');
+
+        var revealObserver = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (entry) {
+              if (!entry.isIntersecting) {
+                return;
+              }
+              var el = entry.target;
+              var delay = parseInt(el.getAttribute('data-reveal-delay') || '0', 10);
+              window.setTimeout(function () {
+                el.classList.add('is-visible');
+              }, delay);
+              revealObserver.unobserve(el);
+            });
+          },
+          { rootMargin: '0px 0px -10% 0px', threshold: 0.1 }
+        );
+
+        Array.prototype.forEach.call(revealItems, function (el) {
+          if (!el.getAttribute('data-reveal-delay')) {
+            var parent = el.parentNode;
+            var index = 0;
+            if (parent && parent.children) {
+              for (var i = 0; i < parent.children.length; i++) {
+                if (parent.children[i] === el) {
+                  break;
+                }
+                if (parent.children[i].getAttribute('data-reveal') !== null) {
+                  index++;
+                }
+              }
+            }
+            el.setAttribute('data-reveal-delay', String(Math.min(index * 70, 420)));
+          }
+          revealObserver.observe(el);
+        });
+      }
+    }
+  })();
+</script>
+</body>
+</html>
